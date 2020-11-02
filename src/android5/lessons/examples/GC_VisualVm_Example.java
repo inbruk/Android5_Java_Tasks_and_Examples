@@ -11,9 +11,19 @@ public class GC_VisualVm_Example {
         Thread t1 = new Thread(() -> {
             while (true) {
                 List<byte[]> bytes = new LinkedList<>();
+                for (int i = 0; i < 10; i++) {
+                    bytes.add(new byte[200 * 1024 * 1024]);
+                    sleep(100);
+                }
+                bytes = new LinkedList<>();
                 for (int i = 0; i < 100; i++) {
-                    bytes.add(new byte[1024 * 1024]);
+                    bytes.add(new byte[20 * 1024 * 1024]);
                     sleep(10);
+                }
+                bytes = new LinkedList<>();
+                for (int i = 0; i < 1000; i++) {
+                    bytes.add(new byte[1024 * 1024]);
+                    sleep(3);
                 }
             }
         });
